@@ -35,14 +35,14 @@ jobs:
             - project
       - notify_slack_failure
 
-  unit:
+  test:
     <<: *DOCKER_NODE
     resource_class: small
     steps:
       - attach_workspace:
           at: ~/
       - run:
-          command: npm run test:unit -- --maxWorkers=4
+          command: npm run test -- --maxWorkers=4
           no_output_timeout: 3m
       - notify_slack_failure
 
@@ -53,17 +53,6 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: npm run lint
-      - notify_slack_failure
-
-  typecheck:
-    <<: *DOCKER_NODE
-    resource_class: small
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: npm run typecheck
-          no_output_timeout: 1m
       - notify_slack_failure
 
   build:
@@ -101,34 +90,29 @@ workflows:
   test_and_release:
     jobs:
       - install
-      - unit:
+      - test:
           requires:
             - install
       - lint:
           requires:
             - install
-      - typecheck:
-          requires:
-            - install
       - build:
           requires:
-            - unit
+            - test
             - lint
-            - typecheck
       - release:
           requires:
             - lint
-            - unit
+            - test
             - build
           filters:
             branches:
               only: master
-
-    - pre_release:
-        requires:
-          - lint
-          - unit
-          - build
-        filters:
-          branches:
-            ignore: master
+      - pre_release:
+          requires:
+            - lint
+            - test
+            - build
+          filters:
+            branches:
+              ignore: master
