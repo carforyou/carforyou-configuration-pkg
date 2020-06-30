@@ -1,12 +1,6 @@
 module.exports = {
-  globals: {
-    "ts-jest": {
-      tsConfig: "tsconfig.json",
-      diagnostics: false,
-    },
-  },
+  globals: {},
   testPathIgnorePatterns: ["<rootDir>/pkg/"],
-  moduleFileExtensions: ["ts", "js", "json", "node"],
-  testMatch: ["**/__tests__/**/*.test.(t|j)s"],
-  preset: "ts-jest",
+  moduleFileExtensions: ["js", "json", "node"],
+  testMatch: ["**/__tests__/**/*.test.js"],
 }
