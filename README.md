@@ -22,9 +22,9 @@ The configuration environment can be passed via `CONFIG_ENV` environment variabl
 $ CONFIG_ENV=stage-prod npm run dev
 ```
 
-In a nextjs project, you can call `loadConfiguration()` in `next.config.js` and pass the result to next as `env`, see https://nextjs.org/docs/api-reference/next.config.js/environment-variables
+In a nextjs project, you can call `loadConfiguration()` in `next.config.js` and pass the result to next as `env`, see https://nextjs.org/docs/api-reference/next.config.js/environment-variables - configuration values will be available on `process.env` both client- and server-side
 
-In any node process, simply call `loadConfiguration()` in an appropriate place
+In any node process, simply call `loadConfiguration()` in an appropriate place and access variables on `process.env`
 
 ## Development
 ```
