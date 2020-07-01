@@ -42,7 +42,7 @@ loadConfiguration()
 Be aware that you cannot access `process.env` on module level of required files because `require`s will get hoised above the function call to `loadConfiguration()`. Make sure you either pass the configuration as parameter or expose a function:
 
 ```
-require("@carforyou/configuration")
+const loadConfiguration = require("@carforyou/configuration")
 loadConfiguration()
 
 const { myVar, getMyVar } = require("./test.js") // this gets hoisted above `loadConfiguration()`
