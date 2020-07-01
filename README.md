@@ -35,7 +35,7 @@ module.exports = {
 In any node process, simply call `loadConfiguration()` in your entry point and access variables on `process.env`.
 
 ```
-require("@carforyou/configuration")
+const loadConfiguration = require("@carforyou/configuration")
 loadConfiguration()
 ```
 
