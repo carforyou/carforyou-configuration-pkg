@@ -26,6 +26,8 @@ In a nextjs project, you can call `loadConfiguration()` in `next.config.js` and 
 
 In any node process, simply call `loadConfiguration()` in an appropriate place and access variables on `process.env`
 
+Call `loadConfiguration()` as early as possible, namely before any of the requires that rely on `process.env` to be populated
+
 ## Development
 ```
 npm run build
