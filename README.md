@@ -24,9 +24,39 @@ $ CONFIG_ENV=stage-prod npm run dev
 
 In a nextjs project, you can call `loadConfiguration()` in `next.config.js` and pass the result to next as `env`, see https://nextjs.org/docs/api-reference/next.config.js/environment-variables - configuration values will be available on `process.env` both client- and server-side
 
-In any node process, simply call `loadConfiguration()` in an appropriate place and access variables on `process.env`
+```
+const loadConfiguration = require("@carforyou/configuration")
+const configuration = loadConfiguration()
+module.exports = {
+  env: configuration
+}
+```
 
-Call `loadConfiguration()` as early as possible, namely before any of the requires that rely on `process.env` to be populated
+In any node process, simply call `loadConfiguration()` in your entry point and access variables on `process.env`.
+
+```
+require("@carforyou/configuration")
+loadConfiguration()
+```
+
+Be aware that you cannot access `process.env` on module level of required files because `require`s will get hoised above the function call to `loadConfiguration()`. Make sure you either pass the configuration as parameter or expose a function:
+
+```
+require("@carforyou/configuration")
+loadConfiguration()
+
+const { myVar, getMyVar } = require("./test.js") // this gets hoisted above `loadConfiguration()`
+myVar        // will be undefined
+getMyVar()   // will be populated
+```
+
+```
+// test.js
+module.exports = {
+  myVar = process.env.MY_VAR            // will be undefined
+  getMyVar = () => process.env.MY_VAR   // will work
+}
+```
 
 ## Development
 ```
