@@ -33,6 +33,8 @@ function loadConfiguration() {
   const localEnv = `${env}.local`
   const version = process.env.VERSION
 
+  process.env.CONFIG_ENV = env
+
   if (!environments.includes(env)) {
     throw new Error(`Invalid environment: ${env}`)
   }
