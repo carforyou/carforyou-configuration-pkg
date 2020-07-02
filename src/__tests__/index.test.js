@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const loadConfiguration = require("../index")
+import loadConfiguration from "../loadConfiguration"
 
 beforeEach(() => {
   process.env.CONFIG_ENV = null
