@@ -33,7 +33,8 @@ jobs:
           root: ~/
           paths:
             - project
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
   test:
     <<: *DOCKER_NODE
@@ -44,7 +45,8 @@ jobs:
       - run:
           command: npm run test -- --maxWorkers=4
           no_output_timeout: 3m
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
   lint:
     <<: *DOCKER_NODE
@@ -53,7 +55,8 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: npm run lint
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
   build:
     <<: *DOCKER_NODE
@@ -65,7 +68,8 @@ jobs:
             root: ~/
             paths:
               - project/pkg
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
   release:
     <<: *DOCKER_NODE
@@ -73,7 +77,8 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: npx semantic-release
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
   pre_release:
     <<: *DOCKER_NODE
@@ -82,7 +87,8 @@ jobs:
           at: ~/
       # manually set PR shell variables to empty to build pull request
       - run: CI_PULL_REQUEST= CIRCLE_PULL_REQUEST= npx semantic-release
-      - notify_slack_failure
+      - notify_slack_failure:
+          only_for_branches: master
 
 
 workflows:
