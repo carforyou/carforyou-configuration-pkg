@@ -3,6 +3,11 @@ import path from "path"
 import fs from "fs"
 import dotenv from "dotenv"
 
+declare global {
+  interface Window {
+  }
+}
+
 if (typeof window !== "undefined") {
   throw new Error(
     "It looks like you're loading the configuration in the browser. Use process.env.VARIABLE instead"
