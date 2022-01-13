@@ -32,7 +32,6 @@
     "typescript": "4.5.4"
   },
   "main": "pkg/cjs/index.js",
-  "module": "pkg/esm/index.js",
   "files": [
     "pkg/**/*"
   ]
