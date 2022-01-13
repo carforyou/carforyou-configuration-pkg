@@ -7,6 +7,7 @@
     "build": "rimraf pkg && tsc --outDir pkg",
     "lint": "eslint --ext js,json .",
     "format": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:debug": "node --inspect-brk --inspect=127.0.0.1:9229 ./node_modules/jest/bin/jest.js --runInBand"
   },
@@ -22,7 +23,8 @@
     "@types/jest": "27.4.0",
     "jest": "27.4.7",
     "rimraf": "3.0.2",
-    "semantic-release": "17.4.4"
+    "semantic-release": "17.4.4",
+    "ts-jest": "27.1.2"
   },
   "dependencies": {
     "dotenv": "10.0.0",
