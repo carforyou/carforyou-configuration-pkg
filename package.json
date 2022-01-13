@@ -31,7 +31,7 @@
     "es-abstract": "1.19.1",
     "typescript": "4.5.4"
   },
-  "main": "pkg/cjs/index.js",
+  "main": "pkg/index.js",
   "files": [
     "pkg/**/*"
   ]
