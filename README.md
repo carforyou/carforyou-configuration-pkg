@@ -48,7 +48,7 @@ cd carforyou-configuration-pkg
 npm run build
 
 cd carforyou-listings-web
-npm link ../carforyou-configuration-pkg/pkg
+npm link ../carforyou-configuration-pkg
 ```
 
 ## Release a new version
