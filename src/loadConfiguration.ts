@@ -3,13 +3,17 @@ import path from "path"
 import fs from "fs"
 import dotenv from "dotenv"
 
+interface Configuration {
+  [key: string]: string | number | boolean
+}
+
 if (typeof window !== "undefined") {
   throw new Error(
     "It looks like you're loading the configuration in the browser. Use process.env.VARIABLE instead"
   )
 }
 
-const loadEnvFile = (configPath) => {
+const loadEnvFile = (configPath: string) => {
   const configuration = dotenv.config({ path: configPath })
 
   // eslint-disable-next-line no-console
@@ -22,7 +26,7 @@ const loadEnvFile = (configPath) => {
   return configuration.parsed
 }
 
-const loadConfiguration = () => {
+const loadConfiguration = (): Configuration => {
   const envDir = path.join(process.cwd(), ".env")
   const environments = fs.readdirSync(envDir)
 
